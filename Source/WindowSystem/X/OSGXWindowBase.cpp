@@ -103,7 +103,7 @@ OSG_BEGIN_NAMESPACE
 \***************************************************************************/
 
 #if !defined(OSG_DO_DOC) || defined(OSG_DOC_DEV)
-DataType FieldTraits<XWindow *>::_type("XWindowPtr", "WindowPtr");
+DataType FieldTraits<XWindow *>::_type("XWindowPtr", "WindowEventProducerPtr");
 #endif
 
 OSG_FIELDTRAITS_GETTYPE(XWindow *)
@@ -137,6 +137,7 @@ void XWindowBase::classDescInserter(TypeObject &oType)
 
     oType.addInitialDesc(pDesc);
 
+
     pDesc = new SFX11Window::Description(
         SFX11Window::getClassType(),
         "window",
@@ -148,6 +149,7 @@ void XWindowBase::classDescInserter(TypeObject &oType)
         static_cast<FieldGetMethodSig >(&XWindow::getHandleWindow));
 
     oType.addInitialDesc(pDesc);
+
 
     pDesc = new SFGLXContext::Description(
         SFGLXContext::getClassType(),
@@ -161,6 +163,7 @@ void XWindowBase::classDescInserter(TypeObject &oType)
 
     oType.addInitialDesc(pDesc);
 
+
     pDesc = new SFInt32::Description(
         SFInt32::getClassType(),
         "fbConfigId",
@@ -172,6 +175,7 @@ void XWindowBase::classDescInserter(TypeObject &oType)
         static_cast<FieldGetMethodSig >(&XWindow::getHandleFbConfigId));
 
     oType.addInitialDesc(pDesc);
+
 }
 
 
@@ -189,62 +193,63 @@ XWindowBase::TypeObject XWindowBase::_type(
     "<?xml version=\"1.0\"?>\n"
     "\n"
     "<FieldContainer\n"
-    "    name=\"XWindow\"\n"
-    "    parent=\"Window\"\n"
-    "    library=\"WindowX\"\n"
-    "    pointerfieldtypes=\"both\"\n"
-    "    structure=\"concrete\"\n"
-    "    systemcomponent=\"true\"\n"
-    "    parentsystemcomponent=\"true\"\n"
-    "    docGroupBase=\"GrpWindowX\"\n"
-    "    >\n"
-    "    The class for X-based windows. See \\ref PageWindowX for a description.\n"
-    "    <Field\n"
-    "        name=\"display\"\n"
-    "        type=\"DisplayP\"\n"
-    "        cardinality=\"single\"\n"
-    "        visibility=\"internal\"\n"
-    "        defaultValue=\"NULL\"\n"
-    "        fieldHeader=\"OSGXWindowDataFields.h\"\n"
-    "        access=\"public\"\n"
-    "        fieldFlags=\"FClusterLocal\"\n"
-    "        >\n"
-    "    </Field>\n"
-    "    <Field\n"
-    "        name=\"window\"\n"
-    "        type=\"X11Window\"\n"
-    "        cardinality=\"single\"\n"
-    "        visibility=\"internal\"\n"
-    "        defaultValue=\"NULL\"\n"
-    "        fieldHeader=\"OSGXWindowDataFields.h\"\n"
-    "        access=\"public\"\n"
-    "        fieldFlags=\"FClusterLocal\"\n"
-    "        >\n"
-    "    </Field>\n"
-    "    <Field\n"
-    "        name=\"context\"\n"
-    "        type=\"GLXContext\"\n"
-    "        cardinality=\"single\"\n"
-    "        visibility=\"internal\"\n"
-    "        defaultValue=\"NULL\"\n"
-    "        fieldHeader=\"OSGXWindowDataFields.h\"\n"
-    "        access=\"public\"\n"
-    "        fieldFlags=\"FClusterLocal\"\n"
-    "        >\n"
-    "    </Field>\n"
-    "    <Field\n"
-    "        name=\"fbConfigId\"\n"
-    "        type=\"Int32\"\n"
-    "        cardinality=\"single\"\n"
-    "        visibility=\"internal\"\n"
-    "        defaultValue=\"-1\"\n"
-    "        access=\"public\"\n"
-    "        fieldFlags=\"FClusterLocal\"\n"
-    "        >\n"
-    "    </Field>\n"
+    "   name=\"XWindow\"\n"
+    "   parent=\"WindowEventProducer\"\n"
+    "   library=\"WindowX\"\n"
+    "   pointerfieldtypes=\"both\"\n"
+    "   structure=\"concrete\"\n"
+    "   systemcomponent=\"true\"\n"
+    "   parentsystemcomponent=\"true\"\n"
+    "   docGroupBase=\"GrpWindowX\"\n"
+    "   >\n"
+    "  The class for X-based windows. See \\ref PageWindowX for a description.\n"
+    "  <Field\n"
+    "\t name=\"display\"\n"
+    "\t type=\"DisplayP\"\n"
+    "\t cardinality=\"single\"\n"
+    "\t visibility=\"internal\"\n"
+    "\t defaultValue=\"NULL\"\n"
+    "\t fieldHeader=\"OSGXWindowDataFields.h\"\n"
+    "\t access=\"public\"\n"
+    "     fieldFlags=\"FClusterLocal\"\n"
+    "\t >\n"
+    "  </Field>\n"
+    "  <Field\n"
+    "\t name=\"window\"\n"
+    "\t type=\"X11Window\"\n"
+    "\t cardinality=\"single\"\n"
+    "\t visibility=\"internal\"\n"
+    "\t defaultValue=\"NULL\"\n"
+    "\t fieldHeader=\"OSGXWindowDataFields.h\"\n"
+    "\t access=\"public\"\n"
+    "     fieldFlags=\"FClusterLocal\"\n"
+    "\t >\n"
+    "  </Field>\n"
+    "  <Field\n"
+    "\t name=\"context\"\n"
+    "\t type=\"GLXContext\"\n"
+    "\t cardinality=\"single\"\n"
+    "\t visibility=\"internal\"\n"
+    "\t defaultValue=\"NULL\"\n"
+    "\t fieldHeader=\"OSGXWindowDataFields.h\"\n"
+    "\t access=\"public\"\n"
+    "     fieldFlags=\"FClusterLocal\"\n"
+    "\t >\n"
+    "  </Field>\n"
+    "  <Field\n"
+    "\t name=\"fbConfigId\"\n"
+    "\t type=\"Int32\"\n"
+    "\t cardinality=\"single\"\n"
+    "\t visibility=\"internal\"\n"
+    "\t defaultValue=\"-1\"\n"
+    "\t access=\"public\"\n"
+    "     fieldFlags=\"FClusterLocal\"\n"
+    "\t >\n"
+    "  </Field>\n"
     "</FieldContainer>\n",
     "The class for X-based windows. See \\ref PageWindowX for a description.\n"
     );
+
 
 /*------------------------------ get -----------------------------------*/
 
