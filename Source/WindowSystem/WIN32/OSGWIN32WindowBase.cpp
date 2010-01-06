@@ -105,7 +105,7 @@ OSG_BEGIN_NAMESPACE
 \***************************************************************************/
 
 #if !defined(OSG_DO_DOC) || defined(OSG_DOC_DEV)
-DataType FieldTraits<WIN32Window *>::_type("WIN32WindowPtr", "WindowPtr");
+DataType FieldTraits<WIN32Window *>::_type("WIN32WindowPtr", "WindowEventProducerPtr");
 #endif
 
 OSG_FIELDTRAITS_GETTYPE(WIN32Window *)
@@ -139,6 +139,7 @@ void WIN32WindowBase::classDescInserter(TypeObject &oType)
 
     oType.addInitialDesc(pDesc);
 
+
     pDesc = new SFHDC::Description(
         SFHDC::getClassType(),
         "hdc",
@@ -151,6 +152,7 @@ void WIN32WindowBase::classDescInserter(TypeObject &oType)
 
     oType.addInitialDesc(pDesc);
 
+
     pDesc = new SFHGLRC::Description(
         SFHGLRC::getClassType(),
         "hglrc",
@@ -162,6 +164,7 @@ void WIN32WindowBase::classDescInserter(TypeObject &oType)
         static_cast<FieldGetMethodSig >(&WIN32Window::getHandleHglrc));
 
     oType.addInitialDesc(pDesc);
+
 
     pDesc = new SFInt32::Description(
         SFInt32::getClassType(),
@@ -176,6 +179,7 @@ void WIN32WindowBase::classDescInserter(TypeObject &oType)
         static_cast<FieldGetMethodSig >(&WIN32Window::getHandleDummy0));
 
     oType.addInitialDesc(pDesc);
+
 }
 
 
@@ -193,66 +197,67 @@ WIN32WindowBase::TypeObject WIN32WindowBase::_type(
     "<?xml version=\"1.0\"?>\n"
     "\n"
     "<FieldContainer\n"
-    "    name=\"WIN32Window\"\n"
-    "    parent=\"Window\"\n"
-    "    library=\"WindowWIN32\"\n"
-    "    pointerfieldtypes=\"both\"\n"
-    "    structure=\"concrete\"\n"
-    "    systemcomponent=\"true\"\n"
-    "    parentsystemcomponent=\"true\"\n"
-    "    docGroupBase=\"GrpWindowWIN32\"\n"
-    "    >\n"
-    "    The class for WIN32 windows.\n"
-    "    <Field\n"
-    "        name=\"hwnd\"\n"
-    "        type=\"HWND\"\n"
-    "        cardinality=\"single\"\n"
-    "        visibility=\"internal\"\n"
-    "        defaultValue=\"0\"\n"
-    "        fieldHeader=\"OSGWIN32WindowDataFields.h\"\n"
-    "        access=\"public\"\n"
-    "        fieldFlags=\"FClusterLocal\"\n"
-    "        >\n"
-    "    </Field>\n"
-    "    <Field\n"
-    "        name=\"hdc\"\n"
-    "        type=\"HDC\"\n"
-    "        cardinality=\"single\"\n"
-    "        visibility=\"internal\"\n"
-    "        defaultValue=\"0\"\n"
-    "        fieldHeader=\"OSGWIN32WindowDataFields.h\"\n"
-    "        access=\"public\"\n"
-    "        fieldFlags=\"FClusterLocal\"\n"
-    "        >\n"
-    "    </Field>\n"
-    "    <Field\n"
-    "        name=\"hglrc\"\n"
-    "        type=\"HGLRC\"\n"
-    "        cardinality=\"single\"\n"
-    "        visibility=\"internal\"\n"
-    "        defaultValue=\"0\"\n"
-    "        fieldHeader=\"OSGWIN32WindowDataFields.h\"\n"
-    "        access=\"public\"\n"
-    "        fieldFlags=\"FClusterLocal\"\n"
-    "        >\n"
-    "    </Field>\n"
-    "    <Field\n"
-    "        name=\"dummy0\"\n"
-    "        type=\"Int32\"\n"
-    "        category=\"data\"\n"
-    "        cardinality=\"single\"\n"
-    "        visibility=\"internal\"\n"
-    "        defaultValue=\"0\"\n"
-    "        access=\"public\"\n"
-    "        fieldFlags=\"FClusterLocal\"\n"
-    "        >\n"
-    "        This field only exists so that all platform window types have the same\n"
-    "        number of fields.\n"
-    "        Otherwise transmitting field masks across a cluster is not possible.\n"
-    "    </Field>\n"
+    "   name=\"WIN32Window\"\n"
+    "   parent=\"WindowEventProducer\"\n"
+    "   library=\"WindowWIN32\"\n"
+    "   pointerfieldtypes=\"both\"\n"
+    "   structure=\"concrete\"\n"
+    "   systemcomponent=\"true\"\n"
+    "   parentsystemcomponent=\"true\"\n"
+    "   docGroupBase=\"GrpWindowWIN32\"\n"
+    "   >\n"
+    "  The class for WIN32 windows.\n"
+    "  <Field\n"
+    "     name=\"hwnd\"\n"
+    "     type=\"HWND\"\n"
+    "     cardinality=\"single\"\n"
+    "     visibility=\"internal\"\n"
+    "     defaultValue=\"0\"\n"
+    "     fieldHeader=\"OSGWIN32WindowDataFields.h\"\n"
+    "     access=\"public\"\n"
+    "     fieldFlags=\"FClusterLocal\"\n"
+    "     >\n"
+    "  </Field>\n"
+    "  <Field\n"
+    "     name=\"hdc\"\n"
+    "     type=\"HDC\"\n"
+    "     cardinality=\"single\"\n"
+    "     visibility=\"internal\"\n"
+    "     defaultValue=\"0\"\n"
+    "     fieldHeader=\"OSGWIN32WindowDataFields.h\"\n"
+    "     access=\"public\"\n"
+    "     fieldFlags=\"FClusterLocal\"\n"
+    "     >\n"
+    "  </Field>\n"
+    "  <Field\n"
+    "     name=\"hglrc\"\n"
+    "     type=\"HGLRC\"\n"
+    "     cardinality=\"single\"\n"
+    "     visibility=\"internal\"\n"
+    "     defaultValue=\"0\"\n"
+    "     fieldHeader=\"OSGWIN32WindowDataFields.h\"\n"
+    "     access=\"public\"\n"
+    "     fieldFlags=\"FClusterLocal\"\n"
+    "     >\n"
+    "  </Field>\n"
+    "  <Field\n"
+    "     name=\"dummy0\"\n"
+    "     type=\"Int32\"\n"
+    "     category=\"data\"\n"
+    "     cardinality=\"single\"\n"
+    "     visibility=\"internal\"\n"
+    "     defaultValue=\"0\"\n"
+    "     access=\"public\"\n"
+    "     fieldFlags=\"FClusterLocal\"\n"
+    "     >\n"
+    "    This field only exists so that all platform window types have the same\n"
+    "    number of fields.\n"
+    "    Otherwise transmitting field masks across a cluster is not possible.\n"
+    "  </Field>\n"
     "</FieldContainer>\n",
     "The class for WIN32 windows.\n"
     );
+
 
 /*------------------------------ get -----------------------------------*/
 
