@@ -219,7 +219,6 @@ class @!Classname!@Base : public @!Parent!@
     };
 @@endif // hasProducedMethods
 
-
     /*---------------------------------------------------------------------*/
     /*! \name                    Class Get                                 */
     /*! \{                                                                 */
@@ -412,8 +411,7 @@ class @!Classname!@Base : public @!Parent!@
     @@endif 
 
     /*! \}                                                                 */
-"@@endif 
-
+@@endif 
 @@if !isAbstract
     /*---------------------------------------------------------------------*/
     /*! \name                   Construction                               */
