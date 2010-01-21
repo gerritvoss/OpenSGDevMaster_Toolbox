@@ -70,7 +70,6 @@
 
 #include "OSGXWindowFields.h"
 
-
 OSG_BEGIN_NAMESPACE
 
 
@@ -118,7 +117,6 @@ class OSG_WINDOWX_DLLMAPPING XWindowBase : public WindowEventProducer
     typedef SFX11Window       SFWindowType;
     typedef SFGLXContext      SFContextType;
     typedef SFInt32           SFFbConfigIdType;
-
 
     /*---------------------------------------------------------------------*/
     /*! \name                    Class Get                                 */
@@ -197,7 +195,6 @@ class OSG_WINDOWX_DLLMAPPING XWindowBase : public WindowEventProducer
 
 
     /*! \}                                                                 */
-
     /*---------------------------------------------------------------------*/
     /*! \name                   Construction                               */
     /*! \{                                                                 */

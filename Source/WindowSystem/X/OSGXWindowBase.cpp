@@ -141,7 +141,6 @@ void XWindowBase::classDescInserter(TypeObject &oType)
 
     oType.addInitialDesc(pDesc);
 
-
     pDesc = new SFX11Window::Description(
         SFX11Window::getClassType(),
         "window",
@@ -153,7 +152,6 @@ void XWindowBase::classDescInserter(TypeObject &oType)
         static_cast<FieldGetMethodSig >(&XWindow::getHandleWindow));
 
     oType.addInitialDesc(pDesc);
-
 
     pDesc = new SFGLXContext::Description(
         SFGLXContext::getClassType(),
@@ -167,7 +165,6 @@ void XWindowBase::classDescInserter(TypeObject &oType)
 
     oType.addInitialDesc(pDesc);
 
-
     pDesc = new SFInt32::Description(
         SFInt32::getClassType(),
         "fbConfigId",
@@ -179,7 +176,6 @@ void XWindowBase::classDescInserter(TypeObject &oType)
         static_cast<FieldGetMethodSig >(&XWindow::getHandleFbConfigId));
 
     oType.addInitialDesc(pDesc);
-
 }
 
 
@@ -253,7 +249,6 @@ XWindowBase::TypeObject XWindowBase::_type(
     "</FieldContainer>\n",
     "The class for X-based windows. See \\ref PageWindowX for a description.\n"
     );
-
 
 /*------------------------------ get -----------------------------------*/
 
