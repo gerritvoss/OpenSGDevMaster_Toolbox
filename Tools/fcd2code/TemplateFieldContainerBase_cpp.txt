@@ -258,7 +258,6 @@ void @!Classname!@Base::classDescInserter(TypeObject &oType)
     @@endif //!field.noAccess
 
     oType.addInitialDesc(pDesc);
-
         @@EndFieldLoop@@
         @@if isRootProducer
     pDesc = new SFEventProducerPtr::Description(
@@ -295,8 +294,8 @@ void @!Classname!@Base::classDescInserter(TypeObject &oType)
     @!Fcdxml!@,
     @!SafeDescription!@
     );
-
 @@if hasProducedMethods
+
 //! @!Classname!@ Produced Methods
 
 MethodDescription *@!Classname!@Base::_methodDesc[] =

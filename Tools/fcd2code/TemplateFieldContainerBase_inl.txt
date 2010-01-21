@@ -235,8 +235,8 @@ const Char8 *@!Classname!@Base::getClassname(void)
 {
     return "@!Classname!@";
 }
-
 @@if isRootProducer 
+
 inline
 EventConnection @!Classname!@Base::attachActivity(ActivityRefPtr TheActivity, UInt32 ProducedEventId)
 {
@@ -303,8 +303,8 @@ EventProducerPtr &@!Classname!@Base::editEventProducer(void)
 {
     return _sfEventProducer.getValue();
 }
-@@endif 
 
+@@endif 
 OSG_GEN_CONTAINERPTR(@!Classname!@);
 
 OSG_END_NAMESPACE
