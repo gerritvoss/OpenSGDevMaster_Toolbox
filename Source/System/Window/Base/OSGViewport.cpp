@@ -378,6 +378,7 @@ void Viewport::render(RenderActionBase *action)
 
         oEnv.setTileFullSize(getCamera()->tileGetFullSize());
         oEnv.setTileRegion  (getCamera()->tileGetRegion  ());
+		oEnv.setAction         ( action );
 
         oEnv.setDrawerId  (action->getDrawerId  ());
         oEnv.setDrawableId(action->getDrawableId());
