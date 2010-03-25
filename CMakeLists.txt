@@ -1388,7 +1388,6 @@ ENDFOREACH()
 # OSGConfigured
 ###############
 
-
 EXECUTE_PROCESS(
     COMMAND "${CMAKE_COMMAND}" -E copy
                      "${CMAKE_SOURCE_DIR}/OSGConfigured.h.cmake"
