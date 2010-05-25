@@ -91,7 +91,7 @@ OSG_BEGIN_NAMESPACE
 \***************************************************************************/
 
 #if !defined(OSG_DO_DOC) || defined(OSG_DOC_DEV)
-DataType FieldTraits<CarbonWindow *>::_type("CarbonWindowPtr", "WindowPtr");
+DataType FieldTraits<CarbonWindow *>::_type("CarbonWindowPtr", "WindowEventProducerPtr");
 #endif
 
 OSG_FIELDTRAITS_GETTYPE(CarbonWindow *)
@@ -142,7 +142,7 @@ CarbonWindowBase::TypeObject CarbonWindowBase::_type(
     "\n"
     "<FieldContainer\n"
     "   name=\"CarbonWindow\"\n"
-    "   parent=\"Window\"\n"
+    "   parent=\"WindowEventProducer\"\n"
     "   library=\"WindowCarbon\"\n"
     "   pointerfieldtypes=\"both\"\n"
     "   structure=\"concrete\"\n"
