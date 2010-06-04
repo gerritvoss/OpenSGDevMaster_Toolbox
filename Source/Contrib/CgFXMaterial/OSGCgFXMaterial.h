@@ -303,6 +303,7 @@ class OSG_CONTRIBCGFX_DLLMAPPING CgFXMaterial : public CgFXMaterialBase
     friend class CgFXMaterialBase;
     friend class CgFXPassChunk;
     friend class CgFXTechnique;
+	friend class ColladaEffect;
 
     friend class ColladaDomProfileCgFXHandler;
 

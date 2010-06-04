@@ -129,7 +129,6 @@ class OSG_CONTRIBCGFX_DLLMAPPING CgFXVariableTexObj :
     friend class CgFXMaterial;
 
     friend class ColladaDomProfileCgFXHandler;
-    
 
     // prohibit default functions (move to 'public' if you need one)
     void operator =(const CgFXVariableTexObj &source);
