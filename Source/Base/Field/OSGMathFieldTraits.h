@@ -373,19 +373,23 @@ struct FieldTraits<Quaternion> : public FieldTraitsVec4TemplateBase<Quaternion>
                                       Self::ToStreamConvertible   ) };
 
     static OSG_BASE_DLLMAPPING
-                 DataType   &getType      (void);
+                 DataType   &getType       (void);
 
-    static const Char8      *getSName     (void) { return "SFQuaternion"; }
-    static const Char8      *getMName     (void) { return "MFQuaternion"; }
+    static const Char8      *getSName      (void) { return "SFQuaternion"; }
+    static const Char8      *getMName      (void) { return "MFQuaternion"; }
 
-    static       Quaternion  getDefault   (void) { return Quaternion();   }
+    static       Quaternion  getDefault    (void) { return Quaternion();   }
 
-    static bool        getFromCString(      Quaternion  &outVal,
-                                      const Char8      *&inVal)
+    static bool              getFromCString(      Quaternion  &outVal,
+                                            const Char8      *&inVal)
     {
+#if 0
         // VRML requires axis and angle in radians
-        outVal.setValueAsAxisRad(inVal);
-
+        //outVal.setValueAsAxisRad(inVal);
+#else
+        //Use format that is consistant
+        outVal.setValueAsQuat(inVal);
+#endif
         return true;
     }
 
