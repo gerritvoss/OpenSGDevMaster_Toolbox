@@ -232,7 +232,7 @@ void @!Classname!@Base::classDescInserter(TypeObject &oType)
         "@!Classname!@EventProducer",
         "Event Producer",
         EventProducerFieldId,EventProducerFieldMask,
-        true,
+        false,
         (Field::SFDefaultFlags | Field::FStdAccess),
         static_cast     <FieldEditMethodSig>(&@!Classname!@::editHandleEventProducer),
         static_cast     <FieldGetMethodSig >(&@!Classname!@::getHandleEventProducer));
@@ -265,7 +265,7 @@ void @!Classname!@Base::classDescInserter(TypeObject &oType)
         "EventProducer",
         "Event Producer",
         EventProducerFieldId,EventProducerFieldMask,
-        true,
+        false,
         (Field::SFDefaultFlags | Field::FStdAccess),
         static_cast     <FieldEditMethodSig>(&@!Classname!@::editHandleEventProducer),
         static_cast     <FieldGetMethodSig >(&@!Classname!@::getHandleEventProducer));
@@ -282,7 +282,7 @@ void @!Classname!@Base::classDescInserter(TypeObject &oType)
     "@!Group!@",
     @!Namespace!@,
 @@if isAbstract
-    "",
+    NULL,
 @@else // isAbstract
     reinterpret_cast<PrototypeCreateF>(&@!Classname!@Base::createEmptyLocal),
 @@endif // isAbstract
