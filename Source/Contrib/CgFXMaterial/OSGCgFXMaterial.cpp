@@ -76,6 +76,8 @@ OSG_BEGIN_NAMESPACE
 const std::string CgFXMaterial::FALBACK_MATERIAL_TECHNIQUE_NAME = 
     std::string("FALBACK_MATERIAL");
 
+CGcontext CgFXMaterial::_pCGcontext = NULL;
+
 /***************************************************************************\
  *                           Class methods                                 *
 \***************************************************************************/
@@ -102,7 +104,7 @@ void CgFXMaterial::resolveLinks(void)
 
 CgFXMaterial::CgFXMaterial(void) :
      Inherited              (     ),
-    _pCGcontext             (NULL ),
+    //_pCGcontext             (NULL ),
     _pCGeffect              (NULL ),
     _pTechIdx               (    0),
     _mDelayTextureExtraction(false),
@@ -116,7 +118,7 @@ CgFXMaterial::CgFXMaterial(void) :
 
 CgFXMaterial::CgFXMaterial(const CgFXMaterial &source) :
      Inherited              (source                         ),
-    _pCGcontext             (NULL                           ),
+    //_pCGcontext             (NULL                           ),
     _pCGeffect              (NULL                           ),
     _pTechIdx               (source._pTechIdx               ),
     _mDelayTextureExtraction(source._mDelayTextureExtraction),
