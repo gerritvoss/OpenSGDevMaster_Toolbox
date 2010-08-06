@@ -719,7 +719,7 @@ void ChangeList::doCommitChanges(void)
                << std::endl;
     }
 
-    const UInt32 loopLimit    = 15;
+    const UInt32 loopLimit    = 25;
     UInt32       loopCount    = 0;
     bool         loopDetected = false;
 
