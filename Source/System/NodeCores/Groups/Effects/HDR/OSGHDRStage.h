@@ -166,6 +166,9 @@ class OSG_EFFECTGROUPS_DLLMAPPING HDRStage : public HDRStageBase
     SimpleSHLChunkTransitPtr generateHDRFragmentProgram(void);
 
     /*! \}                                                                 */
+    
+    SimpleSHLChunkUnrecPtr _TonemapShader;
+    
     /*==========================  PRIVATE  ================================*/
 
   private:

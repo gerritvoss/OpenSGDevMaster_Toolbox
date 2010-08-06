@@ -73,13 +73,10 @@ inline
 void FieldContainer::callChangedFunctors(ConstFieldMaskArg whichField,
                                          UInt32            origin    )
 {
-    MFChangedFunctorCallback::iterator       cfIt = _mfChangedFunctors.begin();
-    MFChangedFunctorCallback::const_iterator cfEnd= _mfChangedFunctors.end();
-
-    for(; cfIt != cfEnd; ++cfIt)
+    for(UInt32 i(0) ; i<_mfChangedFunctors.size() ; ++i)
     {
-        if(cfIt->_func)
-            (cfIt->_func)(this, whichField, origin);
+        if(_mfChangedFunctors[i]._func)
+            (_mfChangedFunctors[i]._func)(this, whichField, origin);
     }
 }
 

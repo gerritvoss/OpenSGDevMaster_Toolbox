@@ -89,6 +89,31 @@ void HDRStage::changed(ConstFieldMaskArg whichField,
                        BitVector         details)
 {
     Inherited::changed(whichField, origin, details);
+
+    if(this->getRenderTarget() != NULL)
+    {
+        if((whichField & BlurWidthFieldMask) ||
+            (whichField & BufferFormatFieldMask))
+        {
+            this->setRenderTarget(NULL);
+        }
+        if(whichField & ExposureFieldMask)
+        {
+            _TonemapShader->updateUniformVariable("exposure", getExposure());
+        }
+        if(whichField & BlurAmountFieldMask)
+        {
+            _TonemapShader->addUniformVariable("blurAmount", getBlurAmount());
+        }
+        if(whichField & EffectAmountFieldMask)
+        {
+            _TonemapShader->addUniformVariable("effectAmount", getEffectAmount());
+        }
+        if(whichField & GammaFieldMask)
+        {
+            _TonemapShader->addUniformVariable("gamma", getGamma());
+        }
+    }
 }
 
 /*-------------------------------------------------------------------------*/
@@ -492,16 +517,16 @@ HDRStageDataTransitPtr HDRStage::setupStageData(Int32 iPixelWidth,
     pTonemapMat->addChunk(pBlurTex1,       1);
     pTonemapMat->addChunk(pBlurTex1Env,    1);
 
-    SimpleSHLChunkUnrecPtr pTonemapShader = generateHDRFragmentProgram();
+    _TonemapShader = generateHDRFragmentProgram();
     
-    pTonemapShader->addUniformVariable("sceneTex",     0);
-    pTonemapShader->addUniformVariable("blurTex",      1);
-    pTonemapShader->addUniformVariable("blurAmount",   getBlurAmount  ());
-    pTonemapShader->addUniformVariable("exposure",     getExposure    ());
-    pTonemapShader->addUniformVariable("effectAmount", getEffectAmount());
-    pTonemapShader->addUniformVariable("gamma",        getGamma       ());
+    _TonemapShader->addUniformVariable("sceneTex",     0);
+    _TonemapShader->addUniformVariable("blurTex",      1);
+    _TonemapShader->addUniformVariable("blurAmount",   getBlurAmount  ());
+    _TonemapShader->addUniformVariable("exposure",     getExposure    ());
+    _TonemapShader->addUniformVariable("effectAmount", getEffectAmount());
+    _TonemapShader->addUniformVariable("gamma",        getGamma       ());
     
-    pTonemapMat->addChunk(pTonemapShader, 0);
+    pTonemapMat->addChunk(_TonemapShader, 0);
     
     returnValue->setToneMappingMaterial(pTonemapMat);
 
@@ -810,10 +835,10 @@ void HDRStage::postProcess(DrawEnv *pEnv)
 
 void HDRStage::initData(RenderAction *pAction)
 {
-    HDRStageDataUnrecPtr pData = pAction->getData<HDRStageData *>(_iDataSlotId);
+    HDRStageDataUnrecPtr pData;// = pAction->getData<HDRStageData *>(_iDataSlotId);
 
-    if(pData == NULL)
-    {
+//    if(pData == NULL)
+//    {
 #if 0
         pData = setupStageData(pViewport->getPixelWidth(),
                                pViewport->getPixelHeight());
@@ -830,7 +855,7 @@ void HDRStage::initData(RenderAction *pAction)
         pData->setHeight(pAction->getActivePartition()->getViewportHeight());
 
         this->setData(pData, _iDataSlotId, pAction);
-    }
+    //}
 }
 
 #define OSGHDRL << std::endl
