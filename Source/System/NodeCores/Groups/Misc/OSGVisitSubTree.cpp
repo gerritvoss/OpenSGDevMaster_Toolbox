@@ -152,7 +152,7 @@ void VisitSubTree::adjustVolume(Volume &volume)
         //from the volume transform 
         if(getSubTreeRoot()->getParent() != NULL)
         {
-            Matrixr InvParentMat = getSubTreeRoot()->getParent()->getToWorld();
+            Matrix InvParentMat = getSubTreeRoot()->getParent()->getToWorld();
 
             InvParentMat.invert();
 
