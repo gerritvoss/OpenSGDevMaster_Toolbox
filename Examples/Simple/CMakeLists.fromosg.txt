@@ -31,7 +31,9 @@ SET(OSG_COMPONENTS OSGBase
                    OSGSystem
                    OSGUtil
                    OSGWindow
-                   OSGWindowGLUT)
+                   OSGWindowGLUT
+                   OSGTBAnimation 
+                   OSGDynamics)
 
 IF(UNIX)
     IF(APPLE)
