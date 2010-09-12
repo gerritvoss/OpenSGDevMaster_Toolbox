@@ -158,18 +158,6 @@ Material *RenderActionBase::getGlobalOverride(void) const
 }
 
 inline
-bool RenderActionBase::getResetStatistics(void) const
-{
-    return _bResetStatistics;
-}
-
-inline
-void RenderActionBase::setResetStatistics(bool value)
-{
-    _bResetStatistics = value;
-}
-
-inline
 TraversalValidator *RenderActionBase::getTravValidator(void)
 {
     return _pTravValidator;
@@ -245,6 +233,18 @@ inline
 bool RenderActionBase::getUseGLFinish(void)
 {
     return _bUseGLFinish;
+}
+
+inline
+bool RenderActionBase::getManageStatReset(void) const
+{
+    return _bManageStatReset;
+}
+
+inline
+void RenderActionBase::setManageStatReset(bool value)
+{
+    _bManageStatReset = value;
 }
 
 /*-------------------------------------------------------------------------*\
