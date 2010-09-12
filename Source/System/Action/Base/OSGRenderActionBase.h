@@ -131,31 +131,31 @@ class OSG_SYSTEM_DLLMAPPING RenderActionBase : public RenderActionBaseParent
     /*! \name               Rendering Environment                          */
     /*! \{                                                                 */
 
-          Viewport      *getViewport      (void                      ) const;
-          void           setViewport      (Viewport      *pViewport  );
+          Viewport      *getViewport       (void                      ) const;
+          void           setViewport       (Viewport      *pViewport  );
     
-          Camera        *getCamera        (void                      ) const;
-          void           setCamera        (Camera        *pCamera    );
+          Camera        *getCamera         (void                      ) const;
+          void           setCamera         (Camera        *pCamera    );
 
-          Background    *getBackground    (void                      ) const;
-          void           setBackground    (Background    *pBackground);
+          Background    *getBackground     (void                      ) const;
+          void           setBackground     (Background    *pBackground);
     
-          Window        *getWindow        (void                      ) const;
-          void           setWindow        (Window        *pWindow    );
+          Window        *getWindow         (void                      ) const;
+          void           setWindow         (Window        *pWindow    );
     
-          Material      *getGlobalOverride(void                      ) const;
-          void           setGlobalOverride(Material      *pMat       );
+          StatCollector *getStatCollector  (void                      ) const;
+          void           setStatCollector  (StatCollector *pStat      );
+
+          bool           getManageStatReset(void                     ) const;
+          void           setManageStatReset(bool          value      );
+
+          Material      *getGlobalOverride (void                      ) const;
+          void           setGlobalOverride (Material      *pMat       );
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
     /*! \name                   Statistics                                 */
     /*! \{                                                                 */
-
-    StatCollector *getStatCollector  (void                ) const;
-    void           setStatCollector  (StatCollector *pStat);
-
-    bool           getResetStatistics(void                ) const;
-    void           setResetStatistics(bool           value);
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
@@ -287,6 +287,7 @@ class OSG_SYSTEM_DLLMAPPING RenderActionBase : public RenderActionBaseParent
     Material           *_pGlobalOverride;
 
     StatCollector      *_pStatistics;
+    bool                _bManageStatReset;
     TraversalValidator *_pTravValidator;
 
     bool                _bResetStatistics;
