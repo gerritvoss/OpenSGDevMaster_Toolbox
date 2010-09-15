@@ -168,24 +168,24 @@ int main(int argc, char **argv)
         commitChanges();
     
 
-        TravMaskGraphOpRefPtr colMeshGrOp = TravMaskGraphOp::create();
+        //TravMaskGraphOpRefPtr colMeshGrOp = TravMaskGraphOp::create();
         //colMeshGrOp->setSearchString("_Col");
         // default values for this graph op will do fine.
-        bool result = colMeshGrOp->traverse(scene);
+        //bool result = colMeshGrOp->traverse(scene);
         //colMeshGrOp->setSearchString("_Mid");
         // result = colMeshGrOp->traverse(scene);
         //colMeshGrOp->setSearchString("_Low");
         // result = colMeshGrOp->traverse(scene);
-        std::cout << "Number of nodes hidden: " << colMeshGrOp->getNumChanged() << std::endl;
+        //std::cout << "Number of nodes hidden: " << colMeshGrOp->getNumChanged() << std::endl;
 
-        LODSetupGraphOpRefPtr LODSetupGrOp = LODSetupGraphOp::create();
+        /*LODSetupGraphOpRefPtr LODSetupGrOp = LODSetupGraphOp::create();
         LODSetupGrOp->addLODInfo(0,20.0f,"_High");
         LODSetupGrOp->addLODInfo(1,50.0f,"_Mid");
         LODSetupGrOp->addLODInfo(3,100.0f,"_Low");
 
         result = LODSetupGrOp->traverse(scene);
 
-        std::cout << "Number of LOD nodes set up: " << LODSetupGrOp->getNumLODSMade() << std::endl;
+        std::cout << "Number of LOD nodes set up: " << LODSetupGrOp->getNumLODSMade() << std::endl;*/
 
         // tell the manager what to manage
         mgr->setWindow(TutorialWindow );
@@ -310,19 +310,6 @@ void reshape(Vec2f Size, SimpleSceneManager *mgr)
 
 NodeRecPtr findRoot(FCFileType::FCPtrStore container)
 {
-<<<<<<< HEAD
-    // just iterating through the container and finding a node without a parent
-    for(OSG::FCFileType::FCPtrStore::iterator it = container.begin(); it != container.end(); it++)
-    {
-        OSG::Node *cur = OSG::dynamic_pointer_cast<OSG::Node>((*it));
-        if(cur != NULL)
-        {
-            if(cur->getParent() == NULL) return cur;
-        }
-    }
-
-    return NULL;
-=======
     // just iterating through the container and finding a node without a parent
     for(FCFileType::FCPtrStore::iterator it = container.begin(); it != container.end(); it++)
     {
@@ -334,7 +321,6 @@ NodeRecPtr findRoot(FCFileType::FCPtrStore container)
     }
 
     return NULL;
->>>>>>> 3dd9cd9... Fixed: Animations on transforms now mostly working.  Still need some more tweaks (interpolation, etc), but basic functionality is in place.
 }
 
 void initializeAnimations(FCFileType::FCPtrStore container, WindowEventProducerRecPtr win )
