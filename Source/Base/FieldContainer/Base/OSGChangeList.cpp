@@ -717,6 +717,7 @@ void ChangeList::doCommitChanges(void)
     {
         SFATAL << "Work store is non-empty, concurrent commit in progress."
                << std::endl;
+        return;
     }
 
     const UInt32 loopLimit    = 25;
