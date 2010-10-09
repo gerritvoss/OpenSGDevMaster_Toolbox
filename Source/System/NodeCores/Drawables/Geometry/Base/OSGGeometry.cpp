@@ -474,42 +474,20 @@ void Geometry::drawPrimitives(DrawEnv *pEnv)
         glColor4fv(color.getValuesRGBA());
 #endif
 
-/*
-    StatCollector *coll = action->getStatistics();
+
+#if 0 // check Action not accessible
+    StatCollector *coll(pEnv->getAction()->getStatCollector());
 
     if(coll != NULL)
     {
-        StatIntElem *el = coll->getElem(Drawable::statNTriangles,false);
+        StatIntElem *el(coll->getElem(RenderAction::statNGeometries,false));
         if(el)
         {
-            GeometryPtr geo(this);
-            UInt32 ntri,nl,np,is;
-
-            calcPrimitiveCount(geo, ntri, nl, np);
-            el->add(ntri);
-            coll->getElem(Drawable::statNLines)->add(nl);
-            coll->getElem(Drawable::statNLines)->add(np);
-
-            if(getIndices() == NULL)
-            {
-                if(getPositions() != NULL)
-                {
-                    is = getPositions()->getSize();
-                }
-                else
-                {
-                    is = 0;
-                }
-            }
-            else
-            {
-                is = getIndexMapping().size();
-                is = getIndices()->getSize() /(is ? is : 1);
-            }
-            coll->getElem(Drawable::statNVertices)->add(is);
+            el->inc();
         }
     }
-*/
+#endif
+
 }
 
 /*! The IntersectAction callback for Geometry. It computes if the ray used in

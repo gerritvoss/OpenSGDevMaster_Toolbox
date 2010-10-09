@@ -774,12 +774,12 @@ void RenderPartition::dropFunctor(DrawFunctor &drawFunc,
             st = DrawableStatsAttachment::get(actCore);
         }
 
-        st->validate();
-
+#if 0
         _uiNumTriangles += st->getTriangles();
+#endif
     }
 
-    #ifdef OSG_NEW_SHADER
+#ifdef OSG_NEW_SHADER
     bOverrodeState = pushShaderState(pState);
 #endif // OSG_NEW_SHADER
 
