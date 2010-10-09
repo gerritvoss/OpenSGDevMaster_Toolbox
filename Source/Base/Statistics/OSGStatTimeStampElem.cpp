@@ -70,8 +70,9 @@ OSG_USING_NAMESPACE
 /*------------- constructors & destructors --------------------------------*/
 
 StatTimeStampElem::StatTimeStampElem(StatElemDescBase *desc) :
-     Inherited(desc), 
-    _time     (   0)
+     Inherited    (desc), 
+    _lastStartTime(   0),
+    _time         (   0)
 {
 }
 

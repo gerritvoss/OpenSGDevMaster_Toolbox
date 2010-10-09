@@ -135,11 +135,12 @@ class OSG_BASE_DLLMAPPING StatTimeStampElem : public StatElem
 
     typedef StatElem Inherited;
 
+    TimeStamp _lastStartTime;
     TimeStamp _time;
 
     // prohibit default functions (move to 'public' if you need one)
     StatTimeStampElem            (const StatTimeStampElem &source);
-    StatTimeStampElem& operator =(const StatTimeStampElem &source);
+    StatTimeStampElem &operator =(const StatTimeStampElem &source);
 };
 
 //---------------------------------------------------------------------------
