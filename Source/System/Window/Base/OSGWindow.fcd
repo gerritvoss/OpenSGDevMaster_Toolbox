@@ -133,10 +133,10 @@
         name="renderOptions"
         type="RenderOptionsPtr"
         cardinality="single"
-        visibility="internal"
+        visibility="external"
         access="public"
         defaultValue="NULL"
-	>
+        >
     </Field>
     <Field
         name="ignoreAllExtensions"
