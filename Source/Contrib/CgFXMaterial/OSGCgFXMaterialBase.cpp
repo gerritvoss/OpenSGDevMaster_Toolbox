@@ -831,6 +831,7 @@ void CgFXMaterialBase::copyFromBin(BinaryDataHandler &pMem,
     }
     if(FieldBits::NoField != (ParameterValueSourceFieldMask & whichField))
     {
+        editSField(ParameterValueSourceFieldMask);
         _sfParameterValueSource.copyFromBin(pMem);
     }
     if(FieldBits::NoField != (EffectFileFieldMask & whichField))
@@ -855,8 +856,8 @@ void CgFXMaterialBase::copyFromBin(BinaryDataHandler &pMem,
     }
     if(FieldBits::NoField != (SelectedTechniqueFieldMask & whichField))
     {
-        editMField(VariableNamesFieldMask, _mfVariableNames);
-        _mfVariableNames.copyFromBin(pMem);
+        editSField(SelectedTechniqueFieldMask);
+        _sfSelectedTechnique.copyFromBin(pMem);
     }
     if(FieldBits::NoField != (StateVariablesFieldMask & whichField))
     {
@@ -952,7 +953,6 @@ CgFXMaterial *CgFXMaterialBase::createEmpty(void)
     return returnValue;
 }
 
-
 FieldContainerTransitPtr CgFXMaterialBase::shallowCopyLocal(
     BitVector bFlags) const
 {
@@ -995,7 +995,6 @@ FieldContainerTransitPtr CgFXMaterialBase::shallowCopy(void) const
 
     return returnValue;
 }
-
 
 
 
@@ -1424,6 +1423,7 @@ EditFieldHandlePtr CgFXMaterialBase::editHandleGLId           (void)
 
     return returnValue;
 }
+
 
 
 #ifdef OSG_MT_CPTR_ASPECT
