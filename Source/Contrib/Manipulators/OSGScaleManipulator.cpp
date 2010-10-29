@@ -225,8 +225,7 @@ void ScaleManipulator::updateLength(void)
     Inherited::updateLength();
 }
 
-void ScaleManipulator::doMovement(      Transform    *t,
-                                  const Int32         coord,
+void ScaleManipulator::doMovement(const Int32         coord,
                                   const Real32        value,
                                   const Vec3f        &translation,
                                   const Quaternion   &rotation,
@@ -250,6 +249,6 @@ void ScaleManipulator::doMovement(      Transform    *t,
     Matrix Result(_initialXForm);
     Result.mult(scaleMat);
 
-    t->setMatrix(Result);
+    setTransformation(Result);
 }
 

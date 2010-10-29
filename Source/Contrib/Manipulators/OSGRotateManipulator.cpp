@@ -142,8 +142,7 @@ NodeTransitPtr RotateManipulator::makeHandleGeo()
     return makeSphere(2, 0.2f);
 }
 
-void RotateManipulator::doMovement(      Transform    *t,
-                                   const Int32         coord,
+void RotateManipulator::doMovement(const Int32         coord,
                                    const Real32        value,
                                    const Vec3f        &translation,
                                    const Quaternion   &rotation,
@@ -160,5 +159,5 @@ void RotateManipulator::doMovement(      Transform    *t,
     Matrix Result(_initialXForm);
     Result.mult(rotateMat);
 
-    t->setMatrix(Result);
+    setTransformation(Result);
 }
