@@ -2141,23 +2141,6 @@ FUNCTION(OSG_SETUP_SEPARATE_LIBS_DOXYDOC)
 
     INCLUDE(${${PROJECT_NAME}_BUILD_FILE})
 
-
-
-#    FILE(APPEND ${OSG_${PROJECT_NAME}_DOXY_CONFIGURATION_FILE}
-#        "#############################################################################\n")
-
-#    IF(${PROJECT_NAME}_DOXY_EXTRA_INC)
-#        FILE(APPEND ${OSG_${PROJECT_NAME}_DOXY_CONFIGURATION_FILE}
-#            "# doc input files for ${PROJECT_NAME}\n\n")
-
-#        FOREACH(DOXYFILE ${${PROJECT_NAME}_DOXY_EXTRA_INC})
-#            FILE(APPEND ${OSG_${PROJECT_NAME}_DOXY_CONFIGURATION_FILE}
-#                "INPUT += ${DOXYFILE}\n")
-#        ENDFOREACH()
-
-#        FILE(APPEND ${OSG_${PROJECT_NAME}_DOXY_CONFIGURATION_FILE} "\n")
-#    ENDIF()
-
     FILE(APPEND ${OSG_${PROJECT_NAME}_DOXY_CONFIGURATION_FILE}
         "# source code input files for ${PROJECT_NAME}\n\n")
 
@@ -2167,6 +2150,22 @@ FUNCTION(OSG_SETUP_SEPARATE_LIBS_DOXYDOC)
     ENDFOREACH()
 
     FILE(APPEND ${OSG_${PROJECT_NAME}_DOXY_CONFIGURATION_FILE} "\n")
+
+    #Tree Code
+    STRING(REGEX MATCH OSGContrib*|OSGTest* _OSG_IS_CONTRIBLIB ${PROJECT_NAME})
+
+    STRING(REPLACE "OSG" "" LIBTREENAME "${PROJECT_NAME}")
+    STRING(REPLACE "Contrib" "" LIBTREENAME "${LIBTREENAME}")
+
+    IF(_OSG_IS_CONTRIBLIB)
+        FILE(APPEND "${OSG_DOXY_DOC_TREE_SCRIPT}"
+            "      insDoc(ContribNode, gLnk(\"R\", \"${LIBTREENAME}\", \"${OSG_DOXY_BASELIB_DOC_HTML_INDEX}/${PROJECT_NAME}/html/index.html\"))
+")
+    ELSE()
+        FILE(APPEND "${OSG_DOXY_DOC_TREE_SCRIPT}"
+            "      insDoc(CoreNode, gLnk(\"R\", \"${LIBTREENAME}\", \"${OSG_DOXY_BASELIB_DOC_HTML_INDEX}/${PROJECT_NAME}/html/index.html\"))
+")
+    ENDIF()
 
 ENDFUNCTION(OSG_SETUP_SEPARATE_LIBS_DOXYDOC)
 
