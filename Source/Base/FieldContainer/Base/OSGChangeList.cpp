@@ -66,7 +66,7 @@ OSG_BEGIN_NAMESPACE
 /* ContainerChangeEntry                                                    */
 
 
-void ContainerChangeEntry::commitChanges(void)
+void ContainerChangeEntry::commitChanges(UInt32 AdditionalChangeOrigin)
 {
 #ifdef OSG_ENABLE_VALGRIND_CHECKS
     VALGRIND_CHECK_VALUE_IS_DEFINED(uiContainerId);
@@ -93,7 +93,9 @@ void ContainerChangeEntry::commitChanges(void)
            whichField            |= *bvUncommittedChanges;
            *bvUncommittedChanges  = TypeTraits<BitVector>::BitsClear;
 
-           pTmp->changed(tmpChanges, ChangedOrigin::Commit, 0);
+           pTmp->changed(tmpChanges, 
+                         ChangedOrigin::Commit | AdditionalChangeOrigin, 
+                         0);
         }
     }
 }
@@ -711,7 +713,7 @@ void ChangeList::clearPool(void)
 /*-------------------------------------------------------------------------*/
 /* Helper                                                                  */
 
-void ChangeList::doCommitChanges(void)
+void ChangeList::doCommitChanges(UInt32 AdditionalChangeOrigin)
 {
     if(_workStore.empty() == false)
     {
@@ -741,7 +743,7 @@ void ChangeList::doCommitChanges(void)
 
             if((*changesIt)->uiEntryDesc == ContainerChangeEntry::Change)
             {
-                (*changesIt)->commitChanges();
+                (*changesIt)->commitChanges(AdditionalChangeOrigin);
             }
 
             ++changesIt;

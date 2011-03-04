@@ -90,9 +90,9 @@ struct OSG_BASE_DLLMAPPING ContainerChangeEntry
 
     ContainerChangeEntry(void);
 
-    void clear        (ChangeList *pListParent);
-    void commitChanges(void                   );
-    void release      (void                   );
+    void clear        (ChangeList *pListParent               );
+    void commitChanges(UInt32      AdditionalChangeOrigin = 0);
+    void release      (void                                  );
 };
 
 /*! \ingroup GrpBaseFieldContainerBase
@@ -136,8 +136,8 @@ class OSG_BASE_DLLMAPPING ChangeList : public MemoryObject
     /*! \name Commit                                                       */
     /*! \{                                                                 */
 
-    void commitChanges        (void);
-    void commitChangesAndClear(void);
+    void commitChanges        (UInt32 AdditionalChangeOrigin = 0);
+    void commitChangesAndClear(UInt32 AdditionalChangeOrigin = 0);
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
@@ -299,11 +299,11 @@ class OSG_BASE_DLLMAPPING ChangeList : public MemoryObject
     /*! \name Helper                                                       */
     /*! \{                                                                 */
 
-    void doCommitChanges(void           );
-    void doApply        (bool   bClear  );
-    void doClear        (void           );
+    void doCommitChanges(UInt32 AdditionalChangeOrigin = 0);
+    void doApply        (bool   bClear                    );
+    void doClear        (void                             );
 
-    void setAspect      (UInt32 uiAspect);
+    void setAspect      (UInt32 uiAspect                  );
 
     /*! \}                                                                 */
     /*==========================  PRIVATE  ================================*/
@@ -329,11 +329,11 @@ class OSG_BASE_DLLMAPPING ChangeList : public MemoryObject
 /*! \brief Convenience function for committing changes
     \ingroup GrpBaseFieldContainerFuncs
  */
-void commitChanges        (void);
+void commitChanges        (UInt32 AdditionalChangeOrigin = 0);
 /*! \brief Convenience function for committing changes
     \ingroup GrpBaseFieldContainerFuncs
  */
-void commitChangesAndClear(void);
+void commitChangesAndClear(UInt32 AdditionalChangeOrigin = 0);
 /*! \brief Convenience function for committing changes
     \ingroup GrpBaseFieldContainerFuncs
  */
