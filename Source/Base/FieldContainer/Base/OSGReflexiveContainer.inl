@@ -392,4 +392,10 @@ bool ReflexiveContainer::isEventProducer(void) const
     return getNumEvents() != 0;
 }
 
+inline
+bool ReflexiveContainer::isEventConnectable(void) const
+{
+    return getConnectableEvents().size() == 0;
+}
+
 OSG_END_NAMESPACE
