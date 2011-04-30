@@ -68,11 +68,11 @@ OSG_BEGIN_NAMESPACE
 
 DataType FieldTraits<FieldContainer          *>::_type(
     "FieldContainerPtr",
-    NULL);
+    "");
 
 DataType FieldTraits<FieldContainer          *>::_mapType(
     "FieldContainerPtrMap",
-    NULL);
+    "");
 
 DataType FieldTraits<AttachmentContainer     *>::_type(
     "AttachmentContainerPtr",
@@ -84,11 +84,11 @@ DataType FieldTraits<Node                   *>::_type(
 
 DataType FieldTraits<ChangedFunctorCallback  >::_type(
     "ChangedFunctorCallback",
-    NULL);
+    "");
  
 DataType FieldTraits<MemoryObject           *>::_type(
     "MemoryObjectPtr",
-    NULL);
+    "");
 
 DataType FieldTraits<HardwareContextData    *>::_type(
     "HardwareContextDataPtr",
