@@ -68,13 +68,13 @@ OSG_BEGIN_NAMESPACE
 
 PointerType FieldTraits<FieldContainer          *>::_type(
     "FieldContainerPtr",
-    NULL,
+    "",
     FieldContainer::getClassType(),
     nsOSG);
 
 DataType FieldTraits<FieldContainer             *>::_mapType(
     "FieldContainerPtrMap",
-    NULL,
+    "",
     nsOSG);
 
 PointerType FieldTraits<AttachmentContainer     *>::_type(
@@ -91,12 +91,12 @@ PointerType FieldTraits<Node                   *>::_type(
 
 DataType FieldTraits<ChangedFunctorCallback     >::_type(
     "ChangedFunctorCallback",
-    NULL,
+    "",
     nsOSG);
  
 DataType FieldTraits<MemoryObject              *>::_type(
     "MemoryObjectPtr",
-    NULL,
+    "",
     nsOSG);
 
 DataType FieldTraits<HardwareContextData       *>::_type(

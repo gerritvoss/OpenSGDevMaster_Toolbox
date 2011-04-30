@@ -131,6 +131,23 @@ void @!Classname!@Base::set@!field.Name!@(@!field.Type!@ const value)
 }
             @@endif //!field.ptrFieldCustomAccess
           @@else // field.isPtrField
+            @@if field.isBridge
+//! Get the value of the @!Classname!@::_@!field.VarName!@ field.
+inline
+@!field.FullType!@ @!Classname!@Base::get@!field.Name!@(void) const
+{
+    return _@!field.VarName!@.getValue();
+}
+
+//! Set the value of the @!Classname!@::_@!field.VarName!@ field.
+inline
+void @!Classname!@Base::set@!field.Name!@(const @!field.FullType!@ @!field.ArgRef!@value)
+{
+    editSField(@!field.Name!@FieldMask);
+
+    _@!field.VarName!@.setValue(value);
+}
+            @@else // field.isBridge
 //! Get the value of the @!Classname!@::_@!field.VarName!@ field.
 
 inline
@@ -156,13 +173,14 @@ void @!Classname!@Base::set@!field.Name!@(const @!field.FullType!@ @!field.ArgRe
 
     _@!field.VarName!@.setValue(value);
 }
-          @@endif // field.isPtrField
+            @@endif // field.isBridge
+        @@endif // field.isPtrField
         @@endif // !field.isStoreless
-      @@endif // !field.noAccess
-    @@EndSFFieldLoop@@
+        @@endif //!field.noAccess
+        @@EndSFFieldLoop@@
 
-    @@BeginMFFieldLoop@@
-      @@if !field.noAccess
+        @@BeginMFFieldLoop@@
+        @@if !field.noAccess
         @@if !field.isStoreless
 //! Get the value of the \a index element the @!Classname!@::_@!field.VarName!@ field.
 inline
