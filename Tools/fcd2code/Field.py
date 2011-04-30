@@ -168,9 +168,12 @@ class Field(FCDElement):
         self.setFCD("pod",                            "(AUTO)",   True);
         self.setFCD("storeless",                      "False",    True);
 
-        self.setFCD("publicRead",                     "false",   True);
+        self.setFCD("publicRead",                     "false",    True);
 
         self.setFCD("clearMField",                    "true",     True);
+
+        # Is the field a bridge to an external value
+        self.setFCD("bridge",                         "false",    True);
       
         # are mf access functions for ptr field available (they might be user generated)
         self.setFCD("hasPushToField",                 "false",    True);
@@ -218,6 +221,9 @@ class Field(FCDElement):
     
     def isPublic(self):
         return self["access"] == "public";
+
+    def isBridge(self):
+        return self["bridge"] == "true";
 
     def isPublicRead(self):
         return self["publicRead"] == "true" or self.isPublic();
@@ -468,6 +474,16 @@ class Field(FCDElement):
         else:
             self["publicRead"] = "false";
             self["isPublicRead"] = False;
+
+        #Bridge
+        if self.getFCD("bridge") == "true":
+            self["bridge"] = "true";
+            self["isBridge"] = True;
+            self["BRIDGE"] = "Bridge";
+        else:
+            self["bridge"] = "false";
+            self["isBridge"] = False;
+            self["BRIDGE"] = "";
 
         #Public Write
         if "isPublic" in self and self["access"] == "public":
@@ -800,7 +816,10 @@ class Field(FCDElement):
                 fieldInclude = "OpenSG/OSG" + self.nsFilePrefix
 
             if includeTable.has_key(TypeRawCaps):
-                fieldInclude = "\"" + fieldInclude + includeTable[TypeRawCaps] + "Fields.h" + "\""
+                if self.getFCD("bridge") == "true":
+                    fieldInclude = "\"" + fieldInclude + includeTable[TypeRawCaps] + "Bridge" + "Fields.h" + "\""
+                else:
+                    fieldInclude = "\"" + fieldInclude + includeTable[TypeRawCaps] + "Fields.h" + "\""
             else:
                 fieldInclude = "\"" + fieldInclude + TypeRawCaps               + "Fields.h" + "\""
 
