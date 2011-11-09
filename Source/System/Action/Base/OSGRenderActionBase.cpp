@@ -84,8 +84,8 @@ RenderActionBase::RenderActionBase(void) :
     _pViewarea                (NULL  ),
     _pTraversalRoot           (NULL  ),
     _pGlobalOverride          (NULL  ),
-    _bManageStatReset         (true  ),
     _pStatistics              (NULL  ),
+    _bManageStatReset         (true  ),
     _pTravValidator           (NULL  ),
 
     _bResetStatistics         (true  ),

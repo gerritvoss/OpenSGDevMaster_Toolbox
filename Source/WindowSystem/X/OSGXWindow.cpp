@@ -59,6 +59,21 @@
 #include <X11/keysym.h>
 #include <X11/Xlib.h>
 
+#ifdef OSG_DEBUG_OLD_C_CASTS
+#ifdef DisplayString
+#undef DisplayString
+#endif
+#define DisplayString(dpy)((reinterpret_cast<_XPrivDisplay>(dpy))->display_name)
+#ifdef ScreenOfDisplay
+#undef ScreenOfDisplay
+#endif
+#ifdef DefaultScreen
+#undef DefaultScreen
+#endif
+#define ScreenOfDisplay(dpy, scr)(&(_XPrivDisplay(dpy))->screens[scr])
+#define DefaultScreen(dpy) 	((_XPrivDisplay(dpy))->default_screen)
+#endif
+
 OSG_USING_NAMESPACE
 
 // Documentation for this class is emited in the
@@ -76,7 +91,7 @@ OSG_USING_NAMESPACE
 
 int XWindow::wait_for_map_notify(Display *, XEvent *event, char *arg)
 {
-    return( event->type == MapNotify && event->xmap.window == (::Window)arg );
+    return( event->type == MapNotify && event->xmap.window == ::Window(arg) );
 }
 
 void XWindow::mainLoop(void)
@@ -478,7 +493,7 @@ void XWindow::setPosition(Pnt2f Pos)
 
 Pnt2f XWindow::getPosition(void) const
 {
-    ::Window *RootWindow;
+    ::Window *RootWindow = NULL;
     int x,y;
     unsigned int Width,Height,Depth,BorderWidth;
     
@@ -498,7 +513,7 @@ void XWindow::setSize(Vec2us Size)
 
 Vec2f XWindow::getSize(void) const
 {
-    ::Window *RootWindow;
+    ::Window *RootWindow = NULL;
     int x,y;
     unsigned int Width,Height,Depth,BorderWidth;
     
@@ -525,7 +540,7 @@ void XWindow::setFocused(bool Focused)
 
 bool XWindow::getFocused(void) const
 {
-    ::Window *FocusWindow;
+    ::Window *FocusWindow = NULL;
     int revert_to;
     XGetInputFocus(this->getDisplay(), FocusWindow, &revert_to);
     
@@ -680,7 +695,7 @@ void XWindow::openWindow(const Pnt2f& ScreenPosition,
 
     int argc(1);
     char **argv = new char*[1];
-    (*argv)= "Bla";
+    (*argv)= const_cast<char *>("Bla");
      XSetStandardProperties(this->getDisplay(), this->getWindow(), WindowName.c_str(), WindowName.c_str(), None, argv, argc, NULL);
     attachWindow();
     
@@ -690,7 +705,7 @@ void XWindow::openWindow(const Pnt2f& ScreenPosition,
     XMapWindow(this->getDisplay(),
                this->getWindow());
     XEvent event;
-    XIfEvent(this->getDisplay(), &event, wait_for_map_notify, (char *)(this->getWindow()));
+    XIfEvent(this->getDisplay(), &event, wait_for_map_notify, reinterpret_cast<char *>(this->getWindow()));
     produceWindowOpened();
     
     this->activate();
@@ -701,7 +716,7 @@ void XWindow::openWindow(const Pnt2f& ScreenPosition,
     //Set things up to capture the delete window event
     Atom wm_delete_window=XInternAtom(this->getDisplay(), "WM_DELETE_WINDOW", False);
     XSetWMProtocols(this->getDisplay(), this->getWindow(), &wm_delete_window, 1);
-    Atom wm_protocols=XInternAtom(this->getDisplay(), "WM_PROTOCOLS", False); 
+    /*Atom wm_protocols=*/XInternAtom(this->getDisplay(), "WM_PROTOCOLS", False); 
 }
 
 bool XWindow::attachWindow(void)
@@ -876,7 +891,7 @@ void XWindow::handleEvent(XEvent& Event)
             Atom wm_delete_window=XInternAtom(this->getDisplay(), "WM_DELETE_WINDOW", False);
             Atom wm_protocols=XInternAtom(this->getDisplay(), "WM_PROTOCOLS", False);
             if (Event.xclient.message_type == wm_protocols &&
-                Event.xclient.data.l[0] == (long)wm_delete_window)
+                Event.xclient.data.l[0] == long(wm_delete_window))
             {
                 XDestroyWindow(this->getDisplay(),this->getWindow());
             }
@@ -1033,21 +1048,6 @@ void XWindow::onDestroy(UInt32 uiContainerId)
     Inherited::onDestroy(uiContainerId);
 }
 
-
-#ifdef OSG_DEBUG_OLD_C_CASTS
-#ifdef DisplayString
-#undef DisplayString
-#endif
-#define DisplayString(dpy)((reinterpret_cast<_XPrivDisplay>(dpy))->display_name)
-#ifdef ScreenOfDisplay
-#undef ScreenOfDisplay
-#endif
-#ifdef DefaultScreen
-#undef DefaultScreen
-#endif
-#define ScreenOfDisplay(dpy, scr)(&(_XPrivDisplay(dpy))->screens[scr])
-#define DefaultScreen(dpy) 	((_XPrivDisplay(dpy))->default_screen)
-#endif
 
 void XWindow::classicInit(void)
 {

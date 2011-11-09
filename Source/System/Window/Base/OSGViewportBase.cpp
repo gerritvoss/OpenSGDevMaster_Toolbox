@@ -127,7 +127,6 @@ OSG_BEGIN_NAMESPACE
     The foreground additions to the rendered image.
 */
 
-
 /***************************************************************************\
  *                      FieldType/FieldTrait Instantiation                 *
 \***************************************************************************/

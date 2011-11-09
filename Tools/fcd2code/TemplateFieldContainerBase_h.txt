@@ -101,10 +101,7 @@
 @@EndProducedEventLoop@@
 
 @@endif
-
 @!LIBNAMESPACE!@_BEGIN_NAMESPACE
-
-OSG_BEGIN_NAMESPACE
 
 @!IMPORTNAMESPACE!@
 class @!Classname!@;
@@ -138,9 +135,8 @@ class @!Classname!@Base : public @!Parent!@
     typedef TypeObject::InitPhase InitPhase;
 
     OSG_GEN_INTERNALPTR(@!Classname!@);
-    
-    
 @@if hasProducedEvents 
+
 @@BeginProducedEventLoop@@
     typedef @!producedEvent.TypeRaw:18!@ @!producedEvent.Name!@EventDetailsType;
 @@EndProducedEventLoop@@
@@ -509,7 +505,7 @@ class @!Classname!@Base : public @!Parent!@
     @@else // isDecorator
       @@BeginFieldLoop@@
         @@if !field.isStoreless
-    @!field.FieldTypeNS!@@!field.BRIDGE!@@!field.FieldTypeCaps:15!@ _@!field.VarName!@;
+    @!field.FieldTypeNS!@@!field.BRIDGE!@@!field.CARD!@@!field.FieldTypeCaps:15!@ _@!field.VarName!@;
        @@endif
       @@EndFieldLoop@@
     @@endif // isDecorator

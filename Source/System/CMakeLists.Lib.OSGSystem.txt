@@ -8,6 +8,7 @@ OSG_SELECT_PROJECT()
 
 # dependencies - OpenSG
 SET(${PROJECT_NAME}_DEP_OSG_LIB OSGBase)
+
 SET(${PROJECT_NAME}_DEP_TEST_OSG_LIB OSGDrawable
                                      OSGGroup
                                      OSGState
@@ -88,6 +89,7 @@ OSG_ADD_DIRECTORY("Source/System/RenderingBackend")
 OSG_ADD_DIRECTORY("Source/System/State/Base")
 OSG_ADD_DIRECTORY("Source/System/Statistics/Base")
 OSG_ADD_DIRECTORY("Source/System/Window/Base")
+OSG_ADD_DIRECTORY("Source/System/Window/Event")
 OSG_ADD_DIRECTORY("Source/System/Window/FrameBufferObjects")
 
 IF(OSG_ENABLE_NEW_SHADER)

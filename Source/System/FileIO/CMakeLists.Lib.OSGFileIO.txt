@@ -7,7 +7,8 @@ OSG_SELECT_PROJECT()
 ##############################################################################
 
 # dependencies - OpenSG
-SET(${PROJECT_NAME}_DEP_OSG_LIB OSGDrawable
+SET(${PROJECT_NAME}_DEP_OSG_LIB OSGBase
+                                OSGDrawable
                                 OSGDynamics
                                 OSGGroup
                                 OSGState)

@@ -406,7 +406,7 @@ const @!field.FieldTypeNS!@@!field.BRIDGE!@@!field.CARD!@@!field.FieldTypeCaps!@
     }
 }
       @@else // field.isPtrField
-@!field.FieldTypeNS!@@!field.BRIDGE!@@!field.FieldTypeCaps!@ *@!Classname!@Base::edit@!field.CARD!@@!field.Name!@(void)
+@!field.FieldTypeNS!@@!field.BRIDGE!@@!field.CARD!@@!field.FieldTypeCaps!@ *@!Classname!@Base::edit@!field.CARD!@@!field.Name!@(void)
 {
     if(_sfDecoratee.getValue() != NULL)
     {
@@ -816,8 +816,8 @@ void @!Classname!@Base::copyFromBin(BinaryDataHandler &pMem,
     return createEmptyLocal();
 @@endif
 }
-@@if supportUnregisteredCreate
 
+@@if supportUnregisteredCreate
 @!Classname!@ *@!Classname!@Base::createUnregistered(void)
 {
     @!Classname!@ *returnValue = new @!Classname!@;
@@ -1040,8 +1040,8 @@ UInt32  @!Classname!@Base::numSlotsEvent(UInt32 eventId) const
     }
 }
 
-
 @@endif  // hasProducedEvents
+
 /*------------------------- constructors ----------------------------------*/
 
 @!Classname!@Base::@!Classname!@Base(void) :
@@ -1079,8 +1079,7 @@ UInt32  @!Classname!@Base::numSlotsEvent(UInt32 eventId) const
     Inherited(source)
 @@else // !hasFields
     Inherited(source),
-    @@if hasFields
-    @@if isDecorator
+  @@if isDecorator
     _sfDecoratee(source._sfDecoratee)
   @@else // isDecorator
     @@BeginFieldLoop@@
@@ -1095,18 +1094,18 @@ UInt32  @!Classname!@Base::numSlotsEvent(UInt32 eventId) const
     _@!field.VarName:25!@(NULL)@!field.Separator!@
             @@else
     _@!field.VarName:25!@()@!field.Separator!@
-                    @@endif // isSField
-                @@endif // ChildField
-            @@else // field.isPtrField
-                @@if field.isBridge
+            @@endif // isSField
+          @@endif // ChildField
+        @@else // field.isPtrField
+          @@if field.isBridge
     _@!field.VarName:25!@(boost::bind(&@!Classname!@::getExternal@!field.Name!@, static_cast<@!Classname!@*>(this)),boost::bind(&@!Classname!@::setExternal@!field.Name!@, static_cast<@!Classname!@*>(this), _1))@!field.Separator!@
-                @@else // field.isBridge
+          @@else // field.isBridge
     _@!field.VarName:25!@(source._@!field.VarName:25!@)@!field.Separator!@
-                @@endif // field.isBridge
-            @@endif // field.isPtrField
-        @@EndFieldLoop@@
-    @@endif // isDecorator
-    @@endif // hasFields
+          @@endif // field.isBridge
+        @@endif // field.isPtrField
+      @@endif // !field.isStoreless
+    @@EndFieldLoop@@
+  @@endif // isDecorator
 @@endif // !hasFields
 {
 }
@@ -1452,7 +1451,6 @@ EditFieldHandlePtr @!Classname!@Base::editHandle@!field.Name:15!@(void)
 }
 
 @@EndFieldLoop@@
-
 @@if hasProducedEvents
 @@BeginProducedEventLoop@@
 GetEventHandlePtr @!Classname!@Base::getHandle@!producedEvent.Name!@Signal(void) const
