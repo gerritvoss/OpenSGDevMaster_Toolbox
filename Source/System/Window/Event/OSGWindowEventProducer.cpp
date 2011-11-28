@@ -164,7 +164,7 @@ ViewportUnrecPtr WindowEventProducer::windowToViewport(const Pnt2f& WindowPoint,
         ThePort = getPort(i);
         if(ThePort->getEnabled())
         {
-            ViewportPoint.setValues(WindowPoint.x() - ThePort->getPixelLeft(), WindowPoint.y() - ThePort->getPixelBottom());
+            ViewportPoint.setValues(WindowPoint.x() - ThePort->computePixelLeft(), WindowPoint.y() - ThePort->computePixelBottom());
             
             return ThePort;
         }
